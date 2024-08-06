@@ -17,5 +17,6 @@ public class Factorial {
         else{
             System.out.println("factorial for negative numbers is not defined!");
         }
+        input.close();
     }
 }
