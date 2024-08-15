@@ -12,23 +12,18 @@ public class UniqueIntSum {
     }
     public static int[] sumZero(int n) {
         int[] sum = new int[n];
-        if(n % 2 != 0){
-            sum[0] = 0;
-            int j = 1;
-            for (int i = 1; i < sum.length ; i += 2) {
+        int j = 1;
+
+        for (int i = 0; i < n; i += 2) {
+            if (i + 1 < n) {
                 sum[i] = j;
-                sum[i+1] = -j;
-                j++;
+                sum[i + 1] = -j;
+            } else {
+                sum[i] = 0;
             }
+            j++;
         }
-        else{
-            int j = 1;
-            for (int i = 0; i < sum.length ; i += 2) {
-                sum[i] = j;
-                sum[i+1] = -j;
-                j++;
-            }
-        }
+
         return sum;
     }
 }
