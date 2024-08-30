@@ -1,7 +1,7 @@
 package _06_searching.binary;
 //leetcode
 //744. Find Smallest Letter Greater Than Target
-public class nextGreatestLetter {
+public class NextGreatestLetter {
     public static void main(String[] args) {
         char[] letter = {'c','f','j'};
         char target = 'j';
