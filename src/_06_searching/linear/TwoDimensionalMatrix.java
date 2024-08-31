@@ -1,4 +1,4 @@
-package _06_searching.binary;
+package _06_searching.linear;
 
 import java.util.Arrays;
 
