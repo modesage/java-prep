@@ -10,7 +10,7 @@ public class RangeXOR {
 
         System.out.println(ans);
 
-        // only for check, will give TLE for large numbers
+        // only for check, will give TLE(time limit exceed) for large numbers
         int ans2 = 0;
         for (int i = a; i <= b; i++) {
             ans2 ^= i;
