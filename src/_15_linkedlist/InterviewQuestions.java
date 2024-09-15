@@ -173,6 +173,68 @@ public class InterviewQuestions {
         return head;
     }
 
+    // google, amazon, facebook, microsoft: https://leetcode.com/problems/reverse-nodes-in-k-group/
+    // Helper method to get the length of the linked list
+    private int getLength(ListNode head) {
+        int length = 0;
+        ListNode current = head;
+        while (current != null) {
+            length++;
+            current = current.next;
+        }
+        return length;
+    }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+        // If k is less than or equal to 1 or head is null, no reversal is needed
+        if (k <= 1 || head == null) {
+            return head;
+        }
+
+        // Calculate the total length of the list
+        int length = getLength(head);
+
+        // Initialize pointers
+        ListNode current = head;
+        ListNode prevGroupEnd = null;
+        ListNode newHead = null;
+
+        // Process the list in chunks of k
+        while (length >= k) {
+            // Mark the start of the current group to be reversed
+            ListNode groupStart = current;
+            ListNode prev = null;
+            ListNode next = null;
+
+            // Reverse the k nodes in the current group
+            for (int i = 0; i < k; i++) {
+                next = current.next; // Save next node
+                current.next = prev; // Reverse the link
+                prev = current;      // Move prev to current node
+                current = next;      // Move to next node
+            }
+
+            // Connect the previous part of the list to the reversed group
+            if (prevGroupEnd != null) {
+                prevGroupEnd.next = prev;
+            } else {
+                // This is the first group being reversed
+                newHead = prev;
+            }
+
+            // Connect the end of the reversed group to the next part of the list
+            groupStart.next = current;
+
+            // Move prevGroupEnd to the end of the reversed group
+            prevGroupEnd = groupStart;
+
+            // Reduce the remaining length
+            length -= k;
+        }
+
+        return newHead != null ? newHead : head;
+    }
+
     // linkedin, google, facebook, microsoft, amazon, apple
     //    https://leetcode.com/problems/palindrome-linked-list/
     public boolean isPalindrome(ListNode head) {
