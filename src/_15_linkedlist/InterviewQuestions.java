@@ -325,6 +325,58 @@ public class InterviewQuestions {
             hf.next = null;
         }
     }
+
+    // FaceBook, Twitter, Google: https://leetcode.com/problems/rotate-list/
+    class Solution {
+
+        private int getLength(ListNode head) {
+            int length = 0;
+            ListNode current = head;
+            while (current != null) {
+                length++;
+                current = current.next;
+            }
+            return length;
+        }
+
+        public ListNode rotateRight(ListNode head, int k) {
+            // If the list is empty or has only one node, or if k is zero, no rotation is needed
+            if (head == null || head.next == null || k == 0) {
+                return head;
+            }
+
+            int length = getLength(head);
+            // Normalize k to avoid unnecessary rotations
+            k = k % length;
+            if (k == 0) {
+                return head; // No rotation needed
+            }
+
+            ListNode newHead = head;
+            ListNode oldTail = head;
+
+            // Find the tail of the list and the node just before the new head
+            for (int i = 1; i < length; i++) {
+                oldTail = oldTail.next;
+            }
+
+            // oldTail is now the last node; link it to the head to form a circular list
+            oldTail.next = head;
+
+            // Find the new tail (which will be the (length - k - 1)th node)
+            ListNode newTail = head;
+            for (int i = 1; i < length - k; i++) {
+                newTail = newTail.next;
+            }
+
+            // The new head will be the node after the new tail
+            newHead = newTail.next;
+            // Break the circular link
+            newTail.next = null;
+
+            return newHead;
+        }
+    }
 }
 
 class ListNode {
