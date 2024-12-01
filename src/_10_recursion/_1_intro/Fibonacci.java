@@ -1,8 +1,8 @@
-package _10_recursion;
+package _10_recursion._1_intro;
 
 public class Fibonacci {
     public static void main(String[] args) {
-        int num = 5;
+        int num = 20;
         int result = fibo(num);
         System.out.println(result);
     }

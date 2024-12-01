@@ -1,9 +1,9 @@
-package _10_recursion;
+package _10_recursion._1_intro;
 
 public class BinarySearch {
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,7,9,11,23,45,67,99};
-        int target = 9;
+        int target = 99;
         int result = search(arr,target,0,arr.length-1);
         System.out.println("target at index: " + result);
     }
