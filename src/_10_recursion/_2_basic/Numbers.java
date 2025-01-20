@@ -2,9 +2,10 @@ package _10_recursion._2_basic;
 
 public class Numbers {
     public static void main(String[] args) {
-        nToOne(5);
+//        nToOne(5);
 //        oneToN(5);
 //        nToOneToN(5);
+//        oneToN_Another(5,1);
     }
 
     static void nToOne(int n){
@@ -25,6 +26,16 @@ public class Numbers {
         //when recursive call is completed and coming back from the base condition
         System.out.println(n);
     }
+
+    static void oneToN_Another(int n, int i){
+        if(i == n){
+            System.out.println(i);
+            return;
+        }
+        System.out.println(i);
+        oneToN_Another(n,++i);
+    }
+
     static void nToOneToN(int n){
         //base condition
         if(n == 0){

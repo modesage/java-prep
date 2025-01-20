@@ -12,6 +12,6 @@ public class SumOfDigits {
         if(n % 10 == n){
             return n;
         }
-        return sumDigits(n / 10) + (n % 10);
+        return (n % 10) + sumDigits(n / 10);
     }
 }

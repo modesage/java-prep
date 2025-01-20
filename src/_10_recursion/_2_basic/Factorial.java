@@ -2,7 +2,7 @@ package _10_recursion._2_basic;
 
 public class Factorial {
     public static void main(String[] args) {
-        int result = fact(3);
+        int result = fact(4);
         System.out.println(result);
     }
     static int fact(int n){
