@@ -179,20 +179,25 @@ Trees are widely used across many domains in computer science and real-world app
 
 ---
 
-## 3. **Full Binary Tree**
-- **Definition**: A full binary tree is a tree in which every node has either 0 or exactly 2 children. Every non-leaf node has two children.
+## 3. **Strict / Full Binary Tree**
+- **Definition**: A strict (or full) binary tree is a tree in which every node has **either 0 or exactly 2 children**. Every **non-leaf node** has two children.
 
 ### **Time Complexity:**
-- **Search, Insert, Delete**: O(n)
-- **Space Complexity**: O(n)
+- **Search, Insert, Delete**: O(n) (in the case of an unbalanced strict binary tree, operations may require checking each node)
+- **Space Complexity**: O(n) (for storing the tree’s nodes)
 
 ### **Advantages:**
-- Simplifies tree traversal as all non-leaf nodes have two children.
-- Good for representing some hierarchical structures.
+- **Simplifies tree traversal** because all non-leaf nodes have exactly two children.
+- **Good for representing certain hierarchical structures**, like decision trees or game trees.
 
 ### **Disadvantages:**
-- Fixed structure that doesn't allow for flexible node distribution.
-- Insertion or deletion may break the "full" property.
+- **Fixed structure** that can be rigid, making it less flexible for dynamic or changing data.
+- **Insertion or deletion** might break the "full" property, requiring adjustments to restore the strict binary tree structure (e.g., ensuring that all non-leaf nodes still have two children).
+
+### Additional Notes:
+- The **search** and **insert** complexities depend on the structure of the tree. For balanced strict binary trees (e.g., binary search trees or AVL trees), the time complexity for search and insert can be **O(log n)**. But for an unbalanced strict binary tree, it would be **O(n)** in the worst case.
+- Strict binary trees are often used in applications like **expression trees** or **binary heaps**, which have different operational complexities based on their balance.
+
 
 ---
 
@@ -359,6 +364,29 @@ A **Skewed Binary Tree** is a type of binary tree where all the nodes are skewed
 
 ---
 
+## Balanced vs Unbalanced Trees
+
+### **Balanced Tree**
+- A tree is **balanced** if, for every node:
+    - The height difference between the left and right subtrees is at most **1**.
+- **Balance Factor (BF)** of a node = Height of Left Subtree - Height of Right Subtree
+- A tree is **balanced** if `|BF| ≤ 1` for every node.
+
+
+#### **Characteristics**:
+- **Operations (insert, search, delete)**: **O(log n)** time complexity.
+
+---
+
+### **Unbalanced Tree**
+- A tree is **unbalanced** if, for at least one node, the height difference between the left and right subtrees is greater than **1**.
+
+
+#### **Characteristics**:
+- **Operations (insert, search, delete)**: **O(n)** time complexity in the worst case.
+
+---
+
 ## 7. Ordered Binary Tree / Binary Search Tree (BST)
 
 ---
@@ -366,6 +394,7 @@ A **Skewed Binary Tree** is a type of binary tree where all the nodes are skewed
 ## **Definition**:
 An **Ordered Binary Tree** (also known as a **Binary Search Tree (BST)**) is a binary tree in which the nodes are ordered in a specific manner: for each node, the value of all the nodes in its left subtree is less than the node’s value, and the value of all the nodes in its right subtree is greater than the node’s value. This property ensures that in-order traversal of the tree will give the nodes in sorted order.
 
+- Here we always start from the **root** when performing operations like search, insert, or delete.
 ---
 
 ## **Time Complexity**:
@@ -581,4 +610,70 @@ Where `n` is the number of nodes in the tree.
 # Properties
 
 - **Perfect Binary tree**: height = h, total nodes = 2^(h+1) - 1
-- 
+- **Leaf Nodes in PBT**: = 2^h
+- **Total Internal Nodes** = 2^(h+1) - 1 - 2^h = 2^h - 1
+- **No. of levels (height) of a tree**: no. of leaves = n, levels(height) = log(n+1) - 1
+- **Min levels**: nodes = n, min levels = ceil of [log(n+1)] - 1
+- **Strict Binary Tree**: no of leaf nodes = no of internal nodes(with 2 children) + 1
+- **Degree**: no of children the node has. For Binary tree it is 2
+
+---
+
+# DFS and BFS Techniques
+
+## **1. Depth-First Search (DFS) Techniques**
+DFS explores as far as possible down one branch before backtracking. It uses a **stack** (either implicitly through recursion or explicitly with a stack data structure). The main DFS techniques are:
+
+### 1.1 **Pre-order Traversal**
+- **Order**: Root → Left → Right
+- **Description**: Visit the root node first, then recursively visit the left subtree, and finally the right subtree.
+- **Use Case**: Copying a tree, expression evaluation (prefix notation).
+
+### 1.2 **In-order Traversal**
+- **Order**: Left → Root → Right
+- **Description**: Traverse the left subtree, visit the root node, and then traverse the right subtree.
+- **Use Case**: Used in Binary Search Trees (BST) to retrieve nodes in ascending order.
+
+### 1.3 **Post-order Traversal**
+- **Order**: Left → Right → Root
+- **Description**: Traverse the left subtree, then the right subtree, and finally visit the root node.
+- **Use Case**: Deleting nodes, postfix expression evaluation.
+
+### 1.4 **Depth-First Search (General)**
+- **Order**: Root → Explore as deep as possible into each subtree before backtracking.
+- **Description**: DFS can be implemented using pre-order, in-order, or post-order traversal. It explores a tree or graph as deep as possible from the root node.
+- **Use Case**: Pathfinding, solving mazes, topological sorting.
+
+---
+
+## **2. Breadth-First Search (BFS) Techniques**
+BFS explores nodes level by level, starting from the root. It uses a **queue** data structure. The main BFS technique is:
+
+### 2.1 **Level-order Traversal**
+- **Order**: Level 1 → Level 2 → Level 3 → ...
+- **Description**: Visit all nodes at the current level from left to right before moving to the next level.
+- **Use Case**: Finding the shortest path in an unweighted graph, tree level-wise processing.
+
+### 2.2 **Breadth-First Search (General)**
+- **Order**: Visit all neighbors of the current node before moving on to the next level.
+- **Description**: BFS traverses the graph or tree level by level, starting from the root (or any given node). All neighbors of a node are visited before moving to the next level.
+- **Use Case**: Shortest path in unweighted graphs, searching for the closest node, solving problems like the "friends network."
+
+---
+
+## **Summary of DFS and BFS Techniques**
+| Technique             | Type     | Order of Visit          | Description                                      | Use Case                                                                                             |
+|-----------------------|----------|-------------------------|--------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| **Pre-order**          | DFS      | Root → Left → Right     | Visit root first, then left and right subtrees.   | Tree copying, prefix expression evaluation                                                           |
+| **In-order**           | DFS      | Left → Root → Right     | Traverse left subtree, then root, then right.    | BST elements traversed in ascending order                                                                      |
+| **Post-order**         | DFS      | Left → Right → Root     | Visit left and right, then root.                 | Deleting tree nodes, postfix expression eval. Bottom up calculation & calculating diameter of a tree |
+| **Depth-First Search** | DFS      | Root → Deepest Subtree  | Explore each node as deeply as possible.         | Pathfinding, solving mazes, topological sort                                                         |
+| **Level-order**        | BFS      | Level 1 → Level 2 → ... | Visit nodes level by level from left to right.   | Shortest path, level-based processing                                                                |
+| **Breadth-First Search** | BFS    | Level-by-level          | Explore all nodes at the current level first.    | Shortest path in unweighted graphs, network search                                                   |
+
+---
+
+### Conclusion:
+- **DFS** explores a tree or graph deeply before backtracking, making it useful for tasks like pathfinding, maze solving, and expression evaluation.
+- **BFS** explores nodes level by level, making it ideal for finding the shortest path and processing nodes in layers.
+
