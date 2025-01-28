@@ -677,3 +677,4 @@ BFS explores nodes level by level, starting from the root. It uses a **queue** d
 - **DFS** explores a tree or graph deeply before backtracking, making it useful for tasks like pathfinding, maze solving, and expression evaluation.
 - **BFS** explores nodes level by level, making it ideal for finding the shortest path and processing nodes in layers.
 
+---
