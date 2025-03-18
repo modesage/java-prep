@@ -148,13 +148,13 @@ public class Solution {
     public int kthSmallest(TreeNode root, int k) {
         //facebook, amazon, google
         //https://leetcode.com/problems/kth-smallest-element-in-a-bst/
-        return helper(root, k).val;
+        return helper1(root, k).val;
     }
-    public TreeNode helper(TreeNode root, int k) {
+    public TreeNode helper1(TreeNode root, int k) {
         if (root == null) {
             return null;
         }
-        TreeNode left = helper(root.left, k);
+        TreeNode left = helper1(root.left, k);
         if (left != null) {
             return left;
         }
@@ -162,7 +162,7 @@ public class Solution {
         if(count == k) {
             return root;
         }
-        return helper(root.right, k);
+        return helper1(root.right, k);
     }
 
 
