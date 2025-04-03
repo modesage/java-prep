@@ -3,13 +3,17 @@ package _21_heaps;
 import java.util.ArrayList;
 
 // Generic Heap class that works for any type T that extends Comparable<T>
-class Heap<T extends Comparable<T>> {
+public class Heap<T extends Comparable<T>> {
 
     private ArrayList<T> list; // Internal list to store heap elements
 
     // Constructor to initialize the heap as an empty list
     public Heap() {
         list = new ArrayList<>();
+    }
+
+    public int size(){
+        return list.size();
     }
 
     // Utility method to swap two elements in the list
