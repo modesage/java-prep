@@ -1,0 +1,19 @@
+package practice.blind75.linked_list;
+
+public class LinkedListCycle {
+    public boolean hasCycle(ListNode head){
+        if(head == null || head.next == null){
+            return false;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next; //move 1 step
+            fast = fast.next.next; //move 2 steps
+            if(slow == fast){
+                return true; //cycle detected
+            }
+        }
+        return false; //reached end, no cycle
+    }
+}
